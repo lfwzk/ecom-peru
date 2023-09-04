@@ -5,16 +5,11 @@ import backend from "../env/main";
 
 export const Store = () => {
   const [products, setProducts] = useState([]);
-
   useEffect(() => {
-    const getProducts = async () => {
-      const response = await fetch(`${backend}/productos`);
-      const data = await response.json();
-
-      setProducts(data);
-    };
-    getProducts();
-  }, []);
+    fetch(`${backend.url}/productos`)
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, [products]);
 
   return (
     <>
@@ -24,7 +19,10 @@ export const Store = () => {
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 sm:grid-cols-2">
             {/* -------------------------------------------------------- */}
             {products.map((producto) => (
-              <div className="card w-full sm:w-80 bg-base-100 shadow-xl p-4">
+              <div
+                className="card w-full sm:w-80 bg-base-100 shadow-xl p-4"
+                key={producto.id}
+              >
                 <figure className="w-auto h-60 sm:w-full sm:h-80 flex items-center justify-center">
                   <img
                     src="https://images.pexels.com/photos/2148216/pexels-photo-2148216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
