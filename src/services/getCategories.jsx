@@ -1,6 +1,6 @@
 import env from "../env/main.js";
 
-export async function getProducts() {
+export async function getCategories() {
   const res = await fetch(
     `${env.api}/productos?populate[categoria][fields][0]=cate_nombre&populate[prod_imagen][fields][0]=url`
   );
@@ -17,7 +17,9 @@ export async function getProducts() {
       prod_preciomenor: precio,
     } = attributes;
     const { data: imagenes } = attributes.prod_imagen;
-    const {data:categoria} = attributes.categoria;
+    const categoria = attributes.cate_nombre
+      ? attributes.cate_nombre.data
+      : null;
     return { id, nombre, descripcion, precio, imagenes, categoria };
   });
 }
