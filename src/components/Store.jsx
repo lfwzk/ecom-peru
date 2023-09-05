@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import backend from "../env/main";
+import { getProducts, getProductImages } from "../services/getProducts";
 
 export const Store = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch(`${backend.url}/productos`)
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
-  }, [products]);
+    getProducts()
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <>
@@ -25,17 +29,14 @@ export const Store = () => {
               >
                 <figure className="w-auto h-60 sm:w-full sm:h-80 flex items-center justify-center">
                   <img
-                    src="https://images.pexels.com/photos/2148216/pexels-photo-2148216.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                    src={getProductImages(producto.imagenes)}
                     alt="Shoes"
                     className="square-image"
                   />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title">
-                    {producto.prod_nombre}
-                    <div className="badge badge-secondary">nuevo</div>
-                  </h2>
-                  <p className="text-lg">BoB. {producto.prod_preciomenor}</p>
+                  <h2 className="card-title">{producto.nombre}</h2>
+                  <p className="text-lg">BoB. {producto.precio}</p>
                   <div className="card-actions justify-end">
                     <button className="btn bg-red-500 text-white">
                       Comprar

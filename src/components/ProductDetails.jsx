@@ -1,8 +1,20 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { useParams } from "react-router-dom";
+import { getProducts, getProductImages } from "../services/getProducts";
 
 export const ProductDetails = () => {
+  useEffect(() => {
+    fetch()
+      .then((data) => {
+        setProducts(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <>
       <Header />
