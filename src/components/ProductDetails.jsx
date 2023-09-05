@@ -6,6 +6,7 @@ import { getProducts, getProductImages } from "../services/getProducts";
 
 export const ProductDetails = () => {
   useEffect(() => {
+    //cambios
     fetch()
       .then((data) => {
         setProducts(data);
