@@ -18,6 +18,13 @@ export const Store = () => {
       });
   }, []);
 
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return title.slice(0, maxLength) + "...";
+    }
+    return title;
+  };
+
   return (
     <>
       <Header />
@@ -37,11 +44,10 @@ export const Store = () => {
                   />
                 </figure>
                 <div className="card-body">
-                  <p className="text-xl">$. {producto.preciomenor}</p>
-                  <h2 className="text-sm font-bold text-center ">
-                    {producto.nombre}
+                  <h2 className="text-2xl font-bold text-center ">
+                    {truncateTitle(producto.nombre, 20)}
                   </h2>
-
+                  <p className="text-xl">Precio: $. {producto.preciomenor}</p>
                   <div className="text-center mt-4">
                     <Link
                       className="btn bg-red-500 text-white"

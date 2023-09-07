@@ -20,6 +20,10 @@ export async function getProducts(id) {
         prod_descripcion: descripcion,
         prod_preciomenor: preciomenor,
         prod_preciomayor: preciomayor,
+        prod_condicion: condicion,
+        prod_modelo: modelo,
+        prod_cantidad: cantidad,
+        prod_descuentos: descuentos,
       } = attributes;
       const { data: imagen_perfil } = attributes.prod_imagen_perfil;
       const { data: imagen_camara } = attributes.prod_imagen_camara;
@@ -33,6 +37,10 @@ export async function getProducts(id) {
         imagen_perfil,
         imagen_camara,
         categoria,
+        condicion,
+        modelo,
+        cantidad,
+        descuentos,
       };
     });
   } else if (data) {
@@ -43,6 +51,10 @@ export async function getProducts(id) {
       prod_descripcion: descripcion,
       prod_preciomenor: preciomenor,
       prod_preciomayor: preciomayor,
+      prod_condicion: condicion,
+      prod_modelo: modelo,
+      prod_cantidad: cantidad,
+      prod_descuentos: descuentos,
     } = attributes;
     const { data: imagen_perfil } = attributes.prod_imagen_perfil;
     const { data: imagen_camara } = attributes.prod_imagen_camara;
@@ -56,6 +68,10 @@ export async function getProducts(id) {
       imagen_perfil,
       imagen_camara,
       categoria,
+      condicion,
+      modelo,
+      cantidad,
+      descuentos,
     };
   } else {
     throw new Error("No se encontraron productos");
