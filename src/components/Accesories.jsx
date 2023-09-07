@@ -17,6 +17,13 @@ export const Accesories = () => {
       });
   }, []);
 
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return title.slice(0, maxLength) + "...";
+    }
+    return title;
+  };
+
   return (
     <>
       <Header />
@@ -44,7 +51,10 @@ export const Accesories = () => {
                         />
                       </figure>
                       <div className="card-body">
-                        <h2 className="card-title">{producto.nombre}</h2>
+                        <h2 className="card-title">
+                          {" "}
+                          {truncateTitle(producto.nombre, 20)}
+                        </h2>
                         <p className="text-lg">$. {producto.preciomenor}</p>
                         <div className="card-actions justify-end">
                           <Link
