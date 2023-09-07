@@ -31,7 +31,7 @@ export const Store = () => {
               >
                 <figure className="w-full h-64 sm:h-80 flex items-center justify-center">
                   <img
-                    src={getProductImages(producto.imagenes)}
+                    src={getProductImages(producto.imagen_perfil)}
                     alt="images"
                     className="w-full h-full object-cover"
                   />
