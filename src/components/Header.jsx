@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../components/images/logo.png";
+import logo from "../components/images/icons/logo.png";
 
 export const Header = () => {
   return (
@@ -43,17 +43,20 @@ export const Header = () => {
                 <a href="/accesories">Accesorios</a>
               </li>
               <li>
-                <a href="/login" className="text-red-500">
+                <a
+                  href="http://192.241.143.182:1337/admin"
+                  className="text-red-500"
+                >
                   Iniciar sesion
                 </a>
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case" href="/">
+          <a href="/">
             <img
               src={logo}
               alt="Logo"
-              className="w-20 h-auto sm:w-20 lg:w-24"
+              className="w-20 h-auto sm:w-20 lg:w-20 "
             />
           </a>
         </div>
@@ -73,23 +76,25 @@ export const Header = () => {
             </li>
           </ul>
           <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
-                <circle cx="12" cy="10" r="3" />
-                <circle cx="12" cy="12" r="10" />
-              </svg>
-            </div>
+            <a href="http://192.241.143.182:1337/admin">
+              <div className="indicator">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5.52 19c.64-2.2 1.84-3 3.22-3h6.52c1.38 0 2.58.8 3.22 3" />
+                  <circle cx="12" cy="10" r="3" />
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+              </div>
+            </a>
           </button>
         </div>
       </div>

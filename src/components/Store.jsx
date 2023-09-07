@@ -37,10 +37,11 @@ export const Store = () => {
                   />
                 </figure>
                 <div className="card-body">
-                  <h2 className="text-xl font-bold text-center">
+                  <p className="text-xl">$. {producto.preciomenor}</p>
+                  <h2 className="text-sm font-bold text-center ">
                     {producto.nombre}
                   </h2>
-                  <p className="text-lg">PRECIO: Soles {producto.precio}</p>
+
                   <div className="text-center mt-4">
                     <Link
                       className="btn bg-red-500 text-white"

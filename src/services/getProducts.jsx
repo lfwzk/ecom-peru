@@ -8,14 +8,13 @@ export async function getProducts(id) {
   const res = await fetch(url);
 
   if (!res.ok) {
-    throw new Error("Algo salió mal");
+    throw new Error(`Error en la solicitud: ${res.statusText}`);
   }
 
   const { data } = await res.json();
-  data?.map((attributes,id)=>(console.log(attributes)))
-  if (Array.isArray(data)) {
 
-    return data?.map(({ attributes, id }) => {
+  if (Array.isArray(data)) {
+    return data.map(({ attributes, id }) => {
       const {
         prod_nombre: nombre,
         prod_descripcion: descripcion,
@@ -25,10 +24,20 @@ export async function getProducts(id) {
       const { data: imagen_perfil } = attributes.prod_imagen_perfil;
       const { data: imagen_camara } = attributes.prod_imagen_camara;
       const { data: categoria } = attributes.categoria;
-      return { id, nombre, descripcion, preciomenor, preciomayor, imagen_perfil, imagen_camara, categoria };
+      return {
+        id,
+        nombre,
+        descripcion,
+        preciomenor,
+        preciomayor,
+        imagen_perfil,
+        imagen_camara,
+        categoria,
+      };
     });
   } else if (data) {
-    const { attributes,id } = data;
+    // Si no es un arreglo, puedes manejarlo como un solo objeto
+    const { attributes, id } = data;
     const {
       prod_nombre: nombre,
       prod_descripcion: descripcion,
@@ -38,7 +47,16 @@ export async function getProducts(id) {
     const { data: imagen_perfil } = attributes.prod_imagen_perfil;
     const { data: imagen_camara } = attributes.prod_imagen_camara;
     const { data: categoria } = attributes.categoria;
-    return { id, nombre, descripcion, preciomenor, preciomayor, imagen_perfil, imagen_camara, categoria };
+    return {
+      id,
+      nombre,
+      descripcion,
+      preciomenor,
+      preciomayor,
+      imagen_perfil,
+      imagen_camara,
+      categoria,
+    };
   } else {
     throw new Error("No se encontraron productos");
   }

@@ -6,6 +6,7 @@ import { ProductDetails } from "./components/ProductDetails";
 import { Computer } from "./components/Computer";
 import { Laptop } from "./components/Laptop";
 import { Notfound } from "./components/Notfound";
+import { Accesories } from "./components/Accesories";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/computer" element={<Computer />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/laptop" element={<Laptop />} />
+        <Route path="/accesories" element={<Accesories />} />
       </Routes>
     </>
   );

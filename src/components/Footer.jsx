@@ -6,7 +6,7 @@ export const Footer = () => {
       <footer className="footer items-center p-4 bg-gray-700 text-white">
         <aside className="items-center grid-flow-col">
           <Icon icon="icon-park:new-computer" width="50" height="50" />
-          <p>Copyright © 2023 - DIM Store </p>
+          <p>Since 2021 - DIM Store </p>
         </aside>
         <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
           <a>
