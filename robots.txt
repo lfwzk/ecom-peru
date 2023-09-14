@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /admin/      # Evitar que los bots accedan a la sección de administración
+Disallow: /private/    # Evitar que los bots accedan a secciones privadas
+Disallow: /tmp/        # Evitar que los bots accedan a directorios temporales
+Disallow: /cgi-bin/    # Evitar que los bots accedan a scripts CGI
+Disallow: /images/     # Evitar que los bots accedan a la carpeta de imágenes
+
+User-agent: Googlebot
+Disallow:             # Permite el acceso completo a Googlebot
+
+Sitemap: https://www.dimstore.lat/sitemap.xml   # Ruta al archivo sitemap
