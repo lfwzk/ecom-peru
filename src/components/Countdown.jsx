@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-export const Countdown = () => {
-  const [days, setDays] = useState(15);
-  const [hours, setHours] = useState(10);
-  const [minutes, setMinutes] = useState(24);
-  const [seconds, setSeconds] = useState(41);
+export const Countdown = ({ days, hours, minutes, seconds }) => {
+  // No es necesario mantener estados locales para días, horas, minutos y segundos
 
   useEffect(() => {
     const countdownInterval = setInterval(() => {
@@ -41,7 +38,7 @@ export const Countdown = () => {
         <span className="countdown font-mono text-xl">
           <span style={{ "--value": days }}>{days}</span>
         </span>
-        dias
+        días
       </div>
       <div className="flex flex-col">
         <span className="countdown font-mono text-xl">

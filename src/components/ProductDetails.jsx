@@ -55,7 +55,7 @@ export const ProductDetails = () => {
                   <img
                     className="object-cover w-auto h-auto rounded-md cursor-pointer"
                     src={getProductImages(product.imagen_perfil)}
-                    alt=""
+                    alt={product.nombre}
                   />
                 </div>
                 <div className="flex-wrap hidden -mx-2 md:flex">
@@ -97,15 +97,20 @@ export const ProductDetails = () => {
                     {product.nombre}
                   </h2>
 
-                  <p className="inline-block text-xl font-semibold text-gray-700 dark:text-gray-400 ">
+                  <div className="inline-block text-xl font-semibold text-gray-700 dark:text-gray-400 ">
                     <h1>Precio por tiempo limitado:</h1>
-                    <span>$. {product.preciomenor}</span>
+                    <span>$. {product.precio}</span>
                     <h2 className="text-red-500">Precio regular</h2>
                     <span className="ml-3 text-2xl font-normal text-red-500 line-through ">
-                      $. {product.preciomayor}
+                      $. {product.precio}
                     </span>
-                  </p>
-                  <Countdown />
+                  </div>
+                  <Countdown
+                    days={product.tiempoRestante.days}
+                    hours={product.tiempoRestante.hours}
+                    minutes={product.tiempoRestante.minutes}
+                    seconds={product.tiempoRestante.seconds}
+                  />
                 </div>
                 <div className="mb-6">
                   <h2 className="mb-2 text-lg font-bold text-gray-700 dark:text-gray-400">
@@ -127,7 +132,7 @@ export const ProductDetails = () => {
                                   viewBox="0 0 16 16"
                                 >
                                   <path
-                                    fill-rule="evenodd"
+                                    fillRule="evenodd"
                                     d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1zM0 11.5A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"
                                   ></path>
                                 </svg>
@@ -227,11 +232,11 @@ export const ProductDetails = () => {
                   <span className="text-base text-gray-600 dark:text-gray-400">
                     Descripcion
                   </span>
-                  <p className="mt-2 text-sm text-blue-500 dark:text-blue-200 text-justify">
+                  <div className="mt-2 text-sm text-blue-500 dark:text-blue-200 text-justify">
                     <span className="text-gray-600 dark:text-gray-400">
                       {product.descripcion}
                     </span>
-                  </p>
+                  </div>
                 </div>
                 <div className="mb-6 "></div>
 

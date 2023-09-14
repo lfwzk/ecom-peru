@@ -45,7 +45,7 @@ export const Laptop = () => {
                       <figure className="w-auto h-60 sm:w-full sm:h-80 flex items-center justify-center">
                         <img
                           src={getProductImages(producto.imagen_perfil)}
-                          alt="Shoes"
+                          alt={producto.nombre}
                           className="w-full h-full object-cover"
                         />
                       </figure>
@@ -54,7 +54,7 @@ export const Laptop = () => {
                           {" "}
                           {truncateTitle(producto.nombre, 20)}
                         </h2>
-                        <p className="text-lg">$. {producto.preciomenor}</p>
+                        <p className="text-lg">$. {producto.precio}</p>
                         <div className="card-actions justify-end">
                           <Link
                             className="btn bg-red-500 text-white"

@@ -54,7 +54,7 @@ export const Computer = () => {
                           {" "}
                           {truncateTitle(producto.nombre, 20)}
                         </h2>
-                        <p className="text-lg">$. {producto.preciomenor}</p>
+                        <p className="text-lg">$. {producto.precio}</p>
                         <div className="card-actions justify-end">
                           <Link
                             className="btn bg-red-500 text-white"
