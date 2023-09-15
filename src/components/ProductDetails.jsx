@@ -5,13 +5,20 @@ import { getProducts, getProductImages } from "../services/getProducts";
 import { useEffect, useState } from "react";
 import { Countdown } from "./Countdown";
 
+function calculatePercentageDiscount(initialPrice, finalPrice) {
+  if ((initialPrice >= 0 && finalPrice >= 0)) {
+    const discountAmount = initialPrice - finalPrice;
+    const percentageDiscount = (discountAmount / initialPrice) * 100;
+    return percentageDiscount.toFixed(2); // Return the percentage with 2 decimal places
+  }  
+  return 0;
+}
 export const ProductDetails = () => {
   const phoneNumber = "+59177558878"; // Reemplaza con tu número de WhatsApp
 
   const whatsappLink = `https://wa.me/${phoneNumber}`;
   const { id } = useParams();
   const [product, setProduct] = useState(null); // Estado para almacenar los datos del producto
-  console.log(product);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Función para abrir el modal
@@ -26,17 +33,18 @@ export const ProductDetails = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      try {
-        const productData = await getProducts(id); // Esperar a que la promesa se resuelva
-        setProduct(productData); // Actualizar el estado con los datos del producto
-      } catch (error) {
-        console.error("Error al obtener el producto:", error);
-      }
+        getProducts(id).then((data) => {
+          setProduct(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     };
 
     fetchProduct(); // Llamar a la función asincrónica para obtener el producto
   }, [id]);
 
+  
   if (!product) {
     // Manejar el caso en que product aún no se ha cargado
     return <div>Cargando...</div>;
@@ -99,7 +107,7 @@ export const ProductDetails = () => {
 
                   <div className="inline-block text-xl font-semibold text-gray-700 dark:text-gray-400 ">
                     <h1>Precio por tiempo limitado:</h1>
-                    <span>$. {product.precio}</span>
+                    <span>$. {product.descuentos?.precio_descuento}</span>
                     <h2 className="text-red-500">Precio regular</h2>
                     <span className="ml-3 text-2xl font-normal text-red-500 line-through ">
                       $. {product.precio}
@@ -168,7 +176,7 @@ export const ProductDetails = () => {
                                   Descuento
                                 </p>
                                 <h2 className="text-base font-semibold text-gray-700 dark:text-gray-400">
-                                  {product.descuentos} %
+                                  {calculatePercentageDiscount(product.precio,product.descuentos?.precio_descuento)} %
                                 </h2>
                               </div>
                             </div>

@@ -1,60 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 export const Countdown = ({ days, hours, minutes, seconds }) => {
-  // No es necesario mantener estados locales para días, horas, minutos y segundos
+  const [daysLeft, setDaysLeft] = useState(days);
+  const [hoursLeft, setHoursLeft] = useState(hours);
+  const [minutesLeft, setMinutesLeft] = useState(minutes);
+  const [secondsLeft, setSecondsLeft] = useState(seconds);
 
   useEffect(() => {
     const countdownInterval = setInterval(() => {
-      // Actualiza los valores de tiempo aquí
-      // Por ejemplo, para restar un segundo:
-      if (seconds > 0) {
-        setSeconds(seconds - 1);
-      } else if (minutes > 0) {
-        setMinutes(minutes - 1);
-        setSeconds(59);
-      } else if (hours > 0) {
-        setHours(hours - 1);
-        setMinutes(59);
-        setSeconds(59);
-      } else if (days > 0) {
-        setDays(days - 1);
-        setHours(23);
-        setMinutes(59);
-        setSeconds(59);
+      // Update the values of time here
+      if (secondsLeft > 0) {
+        setSecondsLeft(secondsLeft - 1);
+      } else if (minutesLeft > 0) {
+        setMinutesLeft(minutesLeft - 1);
+        setSecondsLeft(59);
+      } else if (hoursLeft > 0) {
+        setHoursLeft(hoursLeft - 1);
+        setMinutesLeft(59);
+        setSecondsLeft(59);
+      } else if (daysLeft > 0) {
+        setDaysLeft(daysLeft - 1);
+        setHoursLeft(23);
+        setMinutesLeft(59);
+        setSecondsLeft(59);
       } else {
-        // Cuando se llega a cero, puedes tomar medidas adicionales, como detener el temporizador.
+        // When it reaches zero, you can take additional actions, such as stopping the timer.
         clearInterval(countdownInterval);
       }
-    }, 1000); // Actualiza cada segundo
+    }, 1000); // Update every second
 
     return () => {
       clearInterval(countdownInterval);
     };
-  }, [days, hours, minutes, seconds]);
+  }, [daysLeft, hoursLeft, minutesLeft, secondsLeft]);
 
   return (
     <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
       <div className="flex flex-col">
         <span className="countdown font-mono text-xl">
-          <span style={{ "--value": days }}>{days}</span>
+          <span style={{ "--value": daysLeft }}>{daysLeft}</span>
         </span>
         días
       </div>
       <div className="flex flex-col">
         <span className="countdown font-mono text-xl">
-          <span style={{ "--value": hours }}>{hours}</span>
+          <span style={{ "--value": hoursLeft }}>{hoursLeft}</span>
         </span>
         horas
       </div>
       <div className="flex flex-col">
         <span className="countdown font-mono text-xl">
-          <span style={{ "--value": minutes }}>{minutes}</span>
+          <span style={{ "--value": minutesLeft }}>{minutesLeft}</span>
         </span>
         minutos
       </div>
       <div className="flex flex-col">
         <span className="countdown font-mono text-xl">
-          <span style={{ "--value": seconds }}>{seconds}</span>
+          <span style={{ "--value": secondsLeft }}>{secondsLeft}</span>
         </span>
         segundos
       </div>

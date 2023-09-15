@@ -3,14 +3,21 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { getProducts, getProductImages } from "../services/getProducts";
 import { Link } from "react-router-dom";
-
+import { isInCategory, getCategories,searchCategory } from "../services/getCategories";
 export const Laptop = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     getProducts()
       .then((data) => {
-        console.log(data);
         setProducts(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    getCategories()
+      .then((data) => {
+        setCategories(data);
       })
       .catch((error) => {
         console.error(error);
@@ -33,9 +40,8 @@ export const Laptop = () => {
               {products.map((producto) => {
                 if (
                   producto &&
-                  producto.categoria &&
-                  producto.categoria.attributes &&
-                  producto.categoria.attributes.cate_nombre === "Laptop"
+                  producto.subcategoria &&producto.subcategoria.attributes&&
+                  categories &&isInCategory(searchCategory(categories,producto.subcategoria.attributes.subc_nombre),"Laptop")
                 ) {
                   return (
                     <div

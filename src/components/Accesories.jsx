@@ -2,15 +2,23 @@ import { useState, useEffect } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { getProducts, getProductImages } from "../services/getProducts";
+import { isInCategory, getCategories,searchCategory } from "../services/getCategories";
 import { Link } from "react-router-dom";
 
 export const Accesories = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   useEffect(() => {
     getProducts()
       .then((data) => {
-        console.log(data);
         setProducts(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    getCategories()
+      .then((data) => {
+        setCategories(data);
       })
       .catch((error) => {
         console.error(error);
@@ -34,9 +42,8 @@ export const Accesories = () => {
               {products.map((producto) => {
                 if (
                   producto &&
-                  producto.categoria &&
-                  producto.categoria.attributes &&
-                  producto.categoria.attributes.cate_nombre === "Accesorios"
+                  producto.subcategoria &&producto.subcategoria.attributes&&
+                  categories &&isInCategory(searchCategory(categories,producto.subcategoria.attributes.subc_nombre),"Accesorios")                  
                 ) {
                   return (
                     <div
