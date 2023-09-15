@@ -47,7 +47,7 @@ export const Store = () => {
                   <h2 className="text-2xl font-bold text-center ">
                     {truncateTitle(producto.nombre, 20)}
                   </h2>
-                  <p className="text-xl">Precio: $. {producto.preciomenor}</p>
+                  <p className="text-xl">Precio: $. {producto.precio}</p>
                   <div className="text-center mt-4">
                     <Link
                       className="btn bg-red-500 text-white"
