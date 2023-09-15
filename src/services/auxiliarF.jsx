@@ -20,3 +20,12 @@ export const getRemainingTime = (startDateStr, endDateStr) => {
     }
     return { days: 0, hours: 0, minutes: 0, seconds: 0 };
   }
+
+  export function calculatePercentageDiscount(initialPrice, finalPrice) {
+    if ((initialPrice >= 0 && finalPrice >= 0)) {
+      const discountAmount = initialPrice - finalPrice;
+      const percentageDiscount = (discountAmount / initialPrice) * 100;
+      return percentageDiscount.toFixed(2); // Return the percentage with 2 decimal places
+    }  
+    return 0;
+  }

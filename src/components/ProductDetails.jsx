@@ -4,15 +4,8 @@ import { useParams } from "react-router-dom";
 import { getProducts, getProductImages } from "../services/getProducts";
 import { useEffect, useState } from "react";
 import { Countdown } from "./Countdown";
+import { calculatePercentageDiscount } from "../services/auxiliarF";
 
-function calculatePercentageDiscount(initialPrice, finalPrice) {
-  if ((initialPrice >= 0 && finalPrice >= 0)) {
-    const discountAmount = initialPrice - finalPrice;
-    const percentageDiscount = (discountAmount / initialPrice) * 100;
-    return percentageDiscount.toFixed(2); // Return the percentage with 2 decimal places
-  }  
-  return 0;
-}
 export const ProductDetails = () => {
   const phoneNumber = "+59177558878"; // Reemplaza con tu número de WhatsApp
 
