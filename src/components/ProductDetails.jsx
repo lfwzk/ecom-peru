@@ -26,7 +26,8 @@ export const ProductDetails = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-        getProducts(id).then((data) => {
+      getProducts(id)
+        .then((data) => {
           setProduct(data);
         })
         .catch((error) => {
@@ -37,10 +38,14 @@ export const ProductDetails = () => {
     fetchProduct(); // Llamar a la función asincrónica para obtener el producto
   }, [id]);
 
-  
   if (!product) {
     // Manejar el caso en que product aún no se ha cargado
-    return <div>Cargando...</div>;
+    return (
+      <div>
+        <span className="loading loading-spinner text-error"></span>
+        Cargando.....
+      </div>
+    );
   }
 
   return (
@@ -98,20 +103,39 @@ export const ProductDetails = () => {
                     {product.nombre}
                   </h2>
 
-                  <div className="inline-block text-xl font-semibold text-gray-700 dark:text-gray-400 ">
-                    <h1>Precio por tiempo limitado:</h1>
-                    <span>$. {product.descuentos?.precio_descuento}</span>
-                    <h2 className="text-red-500">Precio regular</h2>
-                    <span className="ml-3 text-2xl font-normal text-red-500 line-through ">
-                      $. {product.precio}
-                    </span>
+                  <div className="inline-block text-xl font-semibold text-gray-700 dark:text-gray-400">
+                    {product.descuentos?.precio_descuento ? (
+                      <>
+                        <h1>Precio por tiempo limitado:</h1>
+                        <span>$. {product.descuentos?.precio_descuento}</span>
+                        <h2 className="text-red-500">Precio regular</h2>
+                        <span className="ml-3 text-2xl font-normal text-red-500 line-through">
+                          $. {product.precio}
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        <h1>Precio:</h1>
+                        <span>$. {product.precio}</span>
+                      </>
+                    )}
                   </div>
-                  <Countdown
-                    days={product.tiempoRestante.days}
-                    hours={product.tiempoRestante.hours}
-                    minutes={product.tiempoRestante.minutes}
-                    seconds={product.tiempoRestante.seconds}
-                  />
+
+                  {product.tiempoRestante.days === 0 &&
+                  product.tiempoRestante.hours === 0 &&
+                  product.tiempoRestante.minutes === 0 &&
+                  product.tiempoRestante.seconds === 0 ? (
+                    <p className="text-green-500 dark:text-green-500 text-2xl">
+                      No tenemos ofertas disponibles
+                    </p>
+                  ) : (
+                    <Countdown
+                      days={product.tiempoRestante.days}
+                      hours={product.tiempoRestante.hours}
+                      minutes={product.tiempoRestante.minutes}
+                      seconds={product.tiempoRestante.seconds}
+                    />
+                  )}
                 </div>
                 <div className="mb-6">
                   <h2 className="mb-2 text-lg font-bold text-gray-700 dark:text-gray-400">
@@ -169,7 +193,11 @@ export const ProductDetails = () => {
                                   Descuento
                                 </p>
                                 <h2 className="text-base font-semibold text-gray-700 dark:text-gray-400">
-                                  {calculatePercentageDiscount(product.precio,product.descuentos?.precio_descuento)} %
+                                  {calculatePercentageDiscount(
+                                    product.precio,
+                                    product.descuentos?.precio_descuento
+                                  )}{" "}
+                                  %
                                 </h2>
                               </div>
                             </div>
